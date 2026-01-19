@@ -1,102 +1,155 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X & Y | Seaside Sanctuary</title>
     <style>
-        /* 核心配色：海水的青蓝 + 阳光的亮橙 + 极致白 */
+        /* 核心配色：晚霞粉、深海蓝、纯白 */
         :root {
-            --ocean-blue: #0077ff;
-            --sun-orange: #ff5500;
-            --sand-white: #ffffff;
-            --text-gray: #333333;
+            --sunset-pink: #ff2d78;
+            --ocean-blue: #001eff;
+            --bg-white: #ffffff;
         }
 
-        body { 
-            background: var(--sand-white); 
-            color: var(--text-gray); 
-            font-family: 'Inter', -apple-system, 'PingFang SC', sans-serif; 
-            margin: 0; padding: 0;
-            -webkit-font-smoothing: antialiased;
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, sans-serif;
+            background: var(--bg-white);
+            color: #000;
+            overflow-x: hidden;
         }
 
-        .wrapper { max-width: 1400px; margin: 0 auto; padding: 40px; }
-
-        /* 顶部品牌：极简先锋感 */
-        header { 
-            display: flex; justify-content: space-between; align-items: baseline;
-            border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 60px;
-        }
-        .brand { font-size: 3rem; font-weight: 900; letter-spacing: -2px; margin: 0; }
-        .tag { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; font-weight: 700; color: var(--sun-orange); }
-
-        /* 核心视觉：海边少女背影与色块冲突 */
-        .hero-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
-
-        .image-container { position: relative; width: 100%; border-radius: 4px; overflow: hidden; }
-        .image-container img { 
-            width: 100%; height: auto; display: block;
-            filter: saturate(1.1) contrast(1.05);
-            transition: transform 1.5s ease;
-        }
-        .image-container:hover img { transform: scale(1.02); }
-
-        /* 撞色色块装饰 */
-        .color-accent { 
-            position: absolute; top: 20px; right: 20px; 
-            width: 80px; height: 80px; background: var(--sun-orange); 
-            mix-blend-mode: overlay; border-radius: 50%;
+        /* 杂志顶部栏 */
+        header {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
-        /* 文字内容：中英双语，精致分栏 */
-        .info-panel { padding: 20px; border-left: 2px solid var(--ocean-blue); }
-        .en-title { font-size: 2.2rem; font-weight: 900; line-height: 1; color: var(--ocean-blue); margin-bottom: 30px; letter-spacing: -1px; }
-        .zh-p { font-size: 1.1rem; line-height: 2.2; font-weight: 300; letter-spacing: 1.5px; color: #444; margin-bottom: 40px; }
-
-        /* 底部金句：极具呼吸感 */
-        .footer-quote {
-            margin-top: 120px; padding: 60px 0; border-top: 1px solid #eee;
-            text-align: left;
+        .brand-logo {
+            font-size: 8vw;
+            font-weight: 900;
+            line-height: 0.8;
+            letter-spacing: -5px;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--ocean-blue);
+            margin: 0;
         }
-        .quote-text { font-size: 5vw; font-weight: 100; letter-spacing: -2px; margin-bottom: 20px; line-height: 1; }
-        .highlight { color: var(--sun-orange); font-weight: 900; }
 
-        @media (max-width: 900px) {
-            .hero-layout { grid-template-columns: 1fr; }
-            .brand { font-size: 2rem; }
-            .quote-text { font-size: 2.5rem; }
+        .brand-tag {
+            text-align: right;
+            max-width: 300px;
+        }
+
+        .brand-tag h2 { font-size: 1.5rem; margin: 0; color: var(--ocean-blue); }
+        .brand-tag p { font-size: 0.7rem; color: #999; margin: 5px 0; letter-spacing: 1px; }
+
+        /* 主视觉区：模仿你提供的双影冲突感 */
+        .hero-container {
+            position: relative;
+            margin: 0 40px;
+            height: 75vh;
+            border: 20px solid var(--sunset-pink);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 图片逻辑：使用 CSS 模拟双重曝光冲突色 */
+        .hero-image {
+            width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?q=80&w=2000') center/cover no-repeat;
+            filter: contrast(1.2) saturate(1.5);
+            position: relative;
+        }
+
+        .hero-image::after {
+            content: "";
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: inherit;
+            background-position: 48% 50%; /* 错位制造双影感 */
+            opacity: 0.4;
+            mix-blend-mode: screen;
+            filter: hue-rotate(300deg) brightness(1.2); /* 制造粉紫冲突色 */
+        }
+
+        /* 图片上的金句 */
+        .image-quote {
+            position: absolute; bottom: 40px; left: 40px;
+            color: #fff; font-size: 2.5rem; font-weight: 800;
+            max-width: 400px; line-height: 1.1;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        /* 文字内容区：双语精排 */
+        .content-section {
+            padding: 80px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+        }
+
+        .text-block { border-top: 1px solid #eee; padding-top: 30px; }
+        .zh-text { font-size: 1.1rem; line-height: 2; color: #333; margin-bottom: 20px; letter-spacing: 1px; }
+        .en-text { font-size: 0.9rem; line-height: 1.5; color: #999; font-style: italic; }
+
+        /* 底部 */
+        footer {
+            padding: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #000;
+            font-size: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .footer-center { font-size: 2rem; font-weight: 900; color: var(--sunset-pink); letter-spacing: 2px; }
+
+        @media (max-width: 768px) {
+            .hero-container { height: 50vh; border-width: 10px; }
+            .content-section { grid-template-columns: 1fr; gap: 40px; }
+            .brand-logo { font-size: 15vw; }
+            .image-quote { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
     <header>
-        <h1 class="brand">X & Y</h1>
-        <div class="tag">Digital Sanctuary Vol. 01</div>
+        <h1 class="brand-logo">X & Y</h1>
+        <div class="brand-tag">
+            <h2>Digital Sanctuary</h2>
+            <p>这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。</p>
+        </div>
     </header>
 
-    <div class="hero-layout">
-        <div class="image-container">
-            <div class="color-accent"></div>
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000" alt="Seaside Girl">
-        </div>
-
-        <div class="info-panel">
-            <div class="en-title">PURE<br>EXHIBITION.</div>
-            <p class="zh-p">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
-            
-            <div class="en-title" style="color: var(--sun-orange);">BEYOND<br>THE SILENCE.</div>
-            <p class="zh-p"><strong>X & Y</strong> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
-        </div>
+    <div class="hero-container">
+        <div class="hero-image"></div>
+        <div class="image-quote">Freedom is the ultimate luxury.</div>
     </div>
 
-    <footer class="footer-quote">
-        <div class="quote-text">"Freedom is the <span class="highlight">ultimate</span> luxury."</div>
-        <p style="font-size: 10px; color: #ccc; letter-spacing: 5px;">© 2026 // ESTABLISHED IN FREEDOM</p>
+    <section class="content-section">
+        <div class="text-block">
+            <p class="zh-text">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
+            <p class="en-text">No longer a collection of mundane records, but a showroom for freedom and reflection. All emotions stripped away, leaving only the purest digital sanctuary.</p>
+        </div>
+        <div class="text-block">
+            <p class="zh-text"><strong>X & Y</strong> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
+            <p class="en-text">The first chronicle of X & Y begins now. In this space, silence is more powerful than words, and solitude is more beautiful than noise.</p>
+        </div>
+    </section>
+
+    <footer>
+        <span>NONCONFORMIST FORMAT</span>
+        <div class="footer-center">X & Y</div>
+        <span>© 2026 ISSUE 01 — THE PUREST LOGIC</span>
     </footer>
-</div>
 
 </body>
 </html>
