@@ -3,98 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X & Y | Vivid Reality</title>
+    <title>X & Y | Pure Sanctuary</title>
     <style>
-        /* 色彩冲突：深背景 + 荧光撞色 */
+        /* 核心配色：马卡龙撞色 + 极简白 */
         :root {
-            --neon-pink: #ff00ff;
-            --neon-blue: #00f2ff;
-            --bg-deep: #0a0a1a;
+            --soft-blue: #a2d2ff;
+            --vivid-orange: #ffafcc;
+            --lemon-pop: #fbff12;
+            --text-main: #1a1a1a;
         }
 
         body { 
-            background: var(--bg-deep); 
-            color: #fff; 
-            font-family: 'Inter', sans-serif; 
+            background: #ffffff; 
+            color: var(--text-main); 
+            font-family: 'Avenir Next', 'Helvetica Neue', sans-serif; 
             margin: 0; padding: 0;
             overflow-x: hidden;
         }
 
-        /* 霓虹渐变背景装饰 */
-        body::before {
-            content: ""; position: fixed; top: -10%; left: -10%; width: 40%; height: 40%;
-            background: radial-gradient(circle, rgba(255,0,255,0.2) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px; }
-
-        /* 潮流标题：空心字效果 */
-        h1 { 
-            font-size: 8vw; font-weight: 900; letter-spacing: 5px; margin: 0;
+        /* 顶部精致小标题 */
+        .nav-header {
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            -webkit-text-stroke: 1px var(--neon-blue);
-            color: transparent;
-            transition: 0.5s;
-        }
-        h1:hover { color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue); }
-
-        /* 图片区域：色彩浓郁的少女侧影 */
-        .main-image { 
-            width: 100%; height: 60vh; 
-            background: url('https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?q=80&w=2000') center/cover;
-            margin: 40px 0;
-            border: 4px solid var(--neon-pink);
-            box-shadow: 20px 20px 0px var(--neon-blue); /* 潮流错位阴影 */
-            filter: saturate(1.5) contrast(1.2);
+            font-weight: 600;
         }
 
-        /* 文字块：毛玻璃质感，色彩冲突 */
-        .text-box { 
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-left: 5px solid var(--neon-pink);
-            margin-top: 50px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 50px; }
 
-        p { 
-            font-size: 1.2rem; line-height: 2; font-weight: 300; 
-            color: #eee; letter-spacing: 1px;
-        }
-
-        strong { color: var(--neon-blue); font-weight: 700; }
-
-        .quote {
-            font-size: 3rem; font-style: italic; font-weight: 800;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+        /* 艺术化的 X & Y 标题 */
+        h1 { 
+            font-size: 12vw; margin: 20px 0; line-height: 0.8; 
+            letter-spacing: -5px; font-weight: 900;
+            background: linear-gradient(90deg, var(--soft-blue), var(--vivid-orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 80px 0;
-            text-align: right;
         }
 
-        .footer { font-size: 0.7rem; letter-spacing: 5px; color: #444; margin-top: 100px; text-align: center; }
+        /* 图片：纯真侧影少女，色彩透亮 */
+        .main-frame {
+            position: relative; width: 100%; height: 75vh;
+            margin: 60px 0;
+            background: var(--soft-blue);
+            border-radius: 40px; /* 圆润的潮流感 */
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(162, 210, 255, 0.3);
+        }
+        .main-frame img {
+            width: 100%; height: 100%; object-fit: cover;
+            mix-blend-mode: multiply; /* 产生艺术滤镜效果 */
+            filter: brightness(1.1) saturate(1.2);
+        }
+
+        /* 文字内容：保持你喜欢的版本 */
+        .text-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 100px;
+        }
+
+        .text-section p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #444;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        /* 这里的文字点缀 */
+        .text-section p::before {
+            content: "XY";
+            position: absolute; top: -40px; left: 0;
+            font-size: 3rem; font-weight: 900; color: rgba(0,0,0,0.03);
+        }
+
+        .highlight { color: var(--vivid-orange); font-weight: 700; }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #bbb;
+        }
 
         @media (max-width: 768px) {
-            h1 { font-size: 15vw; }
-            .quote { font-size: 2rem; }
+            .text-section { grid-template-columns: 1fr; gap: 40px; }
+            h1 { font-size: 20vw; }
+            .nav-header { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>X & Y</h1>
-        
-        <div class="main-image"></div>
 
-        <div class="quote">"Freedom is the ultimate luxury."</div>
+<div class="nav-header">
+    <span>Digital Archive</span>
+    <span>Vol. 2026</span>
+</div>
 
-        <div class="text-box">
-            <p>这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。<strong>X & Y</strong> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
-        </div>
+<div class="container">
+    <h1>X & Y</h1>
 
-        <div class="footer">EST 2026 // DIGITAL ARCHIVE</div>
+    <div class="main-frame">
+        <img src="https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?q=80&w=2000" alt="Pureness">
     </div>
+
+    <div class="text-section">
+        <p>这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
+        <p><span class="highlight">X & Y</span> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
+    </div>
+</div>
+
+<footer>© 2026 ISSUE 01 — THE PUREST LOGIC</footer>
+
 </body>
 </html>
