@@ -3,62 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X & Y | Aesthetic Sanctuary</title>
+    <title>X & Y | Vivid Reality</title>
     <style>
-        body { background: #fff; color: #000; font-family: "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; }
-        .wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
-        
-        /* 品牌大标题 */
-        .brand-title { font-size: 12vw; font-weight: 100; letter-spacing: -5px; line-height: 0.8; margin-bottom: 60px; }
-        
-        /* 潮流感图片容器 */
-        .image-frame { width: 100%; aspect-ratio: 16/9; background: #f7f7f7; overflow: hidden; margin-bottom: 100px; }
-        .image-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); }
+        /* 色彩冲突：深背景 + 荧光撞色 */
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00f2ff;
+            --bg-deep: #0a0a1a;
+        }
 
-        /* 双语排版：左英右中 */
-        .bilingual-content { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; margin-top: 50px; }
-        .en { font-size: 1.2rem; line-height: 1.6; font-weight: 400; letter-spacing: 0.5px; }
-        .zh { font-size: 1rem; line-height: 2; font-weight: 300; color: #666; letter-spacing: 2px; }
+        body { 
+            background: var(--bg-deep); 
+            color: #fff; 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; padding: 0;
+            overflow-x: hidden;
+        }
 
-        /* 底部设计 */
-        footer { margin-top: 150px; font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: #ccc; }
+        /* 霓虹渐变背景装饰 */
+        body::before {
+            content: ""; position: fixed; top: -10%; left: -10%; width: 40%; height: 40%;
+            background: radial-gradient(circle, rgba(255,0,255,0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px; }
+
+        /* 潮流标题：空心字效果 */
+        h1 { 
+            font-size: 8vw; font-weight: 900; letter-spacing: 5px; margin: 0;
+            text-transform: uppercase;
+            -webkit-text-stroke: 1px var(--neon-blue);
+            color: transparent;
+            transition: 0.5s;
+        }
+        h1:hover { color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue); }
+
+        /* 图片区域：色彩浓郁的少女侧影 */
+        .main-image { 
+            width: 100%; height: 60vh; 
+            background: url('https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?q=80&w=2000') center/cover;
+            margin: 40px 0;
+            border: 4px solid var(--neon-pink);
+            box-shadow: 20px 20px 0px var(--neon-blue); /* 潮流错位阴影 */
+            filter: saturate(1.5) contrast(1.2);
+        }
+
+        /* 文字块：毛玻璃质感，色彩冲突 */
+        .text-box { 
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-left: 5px solid var(--neon-pink);
+            margin-top: 50px;
+        }
+
+        p { 
+            font-size: 1.2rem; line-height: 2; font-weight: 300; 
+            color: #eee; letter-spacing: 1px;
+        }
+
+        strong { color: var(--neon-blue); font-weight: 700; }
+
+        .quote {
+            font-size: 3rem; font-style: italic; font-weight: 800;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 80px 0;
+            text-align: right;
+        }
+
+        .footer { font-size: 0.7rem; letter-spacing: 5px; color: #444; margin-top: 100px; text-align: center; }
 
         @media (max-width: 768px) {
-            .bilingual-content { grid-template-columns: 1fr; gap: 40px; }
-            .brand-title { font-size: 20vw; }
+            h1 { font-size: 15vw; }
+            .quote { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>X & Y</h1>
+        
+        <div class="main-image"></div>
 
-<div class="wrapper">
-    <div class="brand-title">X & Y</div>
+        <div class="quote">"Freedom is the ultimate luxury."</div>
 
-    <div class="image-frame">
-        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000" alt="Vogue Aesthetic">
-    </div>
-
-    <div class="bilingual-content">
-        <div class="en">
-            This is no longer a simple folder, but a curated exhibition of self-awareness. 
-            Stripping away all redundant information, leaving only pure intuition and thought. 
-            This is the digital territory of <strong>X & Y</strong>.
-            <br><br>
-            In this fast-paced world, we need a coordinate to pause. 
-            Not to please anyone, but to find that long-lost authenticity at the intersection of code and words.
+        <div class="text-box">
+            <p>这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。<strong>X & Y</strong> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
         </div>
-        <div class="zh">
-            这里不再是一个简单的文件夹，而是一场关于自我意识的策展。
-            剔除掉所有多余的信息，只留下最纯粹的直觉与思考。
-            这是 <strong>X & Y</strong> 的数字领地。
-            <br><br>
-            在这个快节奏的世界里，我们需要一个可以停顿的坐标。
-            不为讨好任何人，只为在代码与文字的交界处，寻找那份久违的真实。
-        </div>
+
+        <div class="footer">EST 2026 // DIGITAL ARCHIVE</div>
     </div>
-
-    <footer>© 2026 ISSUE NO.1 — BEYOND TRENDS</footer>
-</div>
-
 </body>
 </html>
