@@ -3,121 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X & Y | Aesthetic Sanctuary</title>
+    <title>X & Y | PURE</title>
     <style>
-        /* 核心视觉：清透感色彩冲突 */
+        /* 极致的色彩冲突 */
         :root {
-            --accent-blue: #00e5ff;
-            --accent-pink: #ff2d55;
-            --accent-yellow: #fff500;
+            --acid-green: #ccff00; /* 酸性绿 */
+            --power-pink: #ff007f; /* 强力粉 */
+            --deep-blue: #001aff;  /* 宝石蓝 */
+            --bright-white: #ffffff;
         }
 
         body { 
-            background: #fff; 
-            color: #000; 
-            font-family: 'Inter', -apple-system, sans-serif; 
-            margin: 0; padding: 0;
+            background: var(--deep-blue); 
+            margin: 0; padding: 0; 
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: var(--bright-white);
             overflow-x: hidden;
         }
 
-        .wrapper { max-width: 1300px; margin: 0 auto; padding: 40px; }
-
-        /* 极简精致的页眉 */
-        header { 
-            display: flex; justify-content: space-between; 
-            border-bottom: 2px solid #000; padding-bottom: 10px;
-        }
-        .logo { font-size: 2rem; font-weight: 900; letter-spacing: -2px; }
-        .issue { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; }
-
-        /* 图片视觉中心：纯真少女侧脸，高饱和冲突 */
-        .hero-section {
-            position: relative;
-            width: 100%; height: 75vh;
-            margin: 40px 0;
-            display: grid;
-            grid-template-columns: 1fr 300px; /* 侧边留白形成排版张力 */
+        /* 巨大的背景文字装饰 */
+        .bg-text {
+            position: fixed; top: -5%; left: -5%; font-size: 25vw;
+            font-weight: 900; color: rgba(255,255,255,0.03);
+            z-index: -1; pointer-events: none; letter-spacing: -10px;
         }
 
-        .main-img {
-            width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000') center/cover;
-            filter: contrast(1.1) saturate(1.3);
-            border-right: 20px solid var(--accent-yellow); /* 色彩冲突条 */
+        .container { max-width: 1400px; margin: 0 auto; padding: 60px 40px; position: relative; }
+
+        /* 顶部品牌设计 */
+        .brand-zone { border-left: 10px solid var(--acid-green); padding-left: 20px; margin-bottom: 60px; }
+        .brand-zone h1 { font-size: 6rem; font-weight: 900; margin: 0; letter-spacing: -4px; line-height: 0.9; }
+        .brand-zone span { font-size: 1rem; letter-spacing: 8px; color: var(--acid-green); text-transform: uppercase; }
+
+        /* 视觉中心：纯真少女侧影 + 色彩切片 */
+        .hero-layout { display: flex; gap: 40px; align-items: flex-start; }
+
+        .image-container { 
+            flex: 2; position: relative; 
+            height: 70vh; background: var(--power-pink);
+            overflow: hidden;
+        }
+        /* 图片采用清透、纯真的侧脸视角 */
+        .image-container img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            mix-blend-mode: hard-light; /* 色彩冲突的核心 */
+            filter: contrast(1.2) brightness(1.1);
         }
 
-        .color-block {
-            background: var(--accent-pink);
-            display: flex; align-items: flex-end; padding: 20px;
-            font-size: 4rem; font-weight: 900; color: #fff;
-            line-height: 0.8; word-break: break-all;
-        }
-
-        /* 文字排版：精致双语对照 */
-        .content-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 100px; margin-top: 80px;
-        }
-
-        .text-block { position: relative; }
-        .en-title { 
-            font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; 
-            margin-bottom: 30px; line-height: 1;
-        }
+        /* 右侧浮动文字块：中英双语 */
+        .info-panel { flex: 1; padding-top: 100px; }
         
-        .zh-p { 
-            font-size: 1.1rem; line-height: 2.2; color: #333; 
-            font-weight: 400; letter-spacing: 1px;
-            border-left: 4px solid var(--accent-blue); padding-left: 25px;
+        .bilingual-box { margin-bottom: 50px; border-top: 1px solid var(--acid-green); padding-top: 20px; }
+        .en { font-size: 1.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 15px; color: var(--acid-green); }
+        .zh { font-size: 1rem; line-height: 1.8; font-weight: 300; opacity: 0.8; }
+
+        /* 金句横幅 */
+        .quote-banner {
+            margin-top: 80px; font-size: 7vw; font-weight: 900;
+            background: var(--acid-green); color: var(--deep-blue);
+            padding: 20px; transform: rotate(-1deg);
+            width: fit-content; box-shadow: 15px 15px 0 var(--power-pink);
         }
 
-        .highlight-xy {
-            background: var(--accent-yellow); padding: 0 5px; font-weight: 800;
-        }
-
-        footer {
-            margin-top: 100px; padding: 40px 0;
-            border-top: 1px solid #eee;
-            text-align: center; font-size: 0.7rem; letter-spacing: 5px; color: #ccc;
-        }
+        footer { margin-top: 100px; font-size: 0.7rem; letter-spacing: 10px; opacity: 0.3; text-align: center; }
 
         @media (max-width: 900px) {
-            .hero-section { grid-template-columns: 1fr; }
-            .color-block { display: none; }
-            .content-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-layout { flex-direction: column; }
+            .brand-zone h1 { font-size: 4rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <header>
-        <div class="logo">X & Y</div>
-        <div class="issue">Digital Sanctuary // Issue 01</div>
-    </header>
+<div class="bg-text">PURE</div>
 
-    <div class="hero-section">
-        <div class="main-img"></div>
-        <div class="color-block">PURE<br>YOUTH</div>
+<div class="container">
+    <div class="brand-zone">
+        <span>Digital Sanctuary</span>
+        <h1>X & Y</h1>
     </div>
 
-    <div class="content-grid">
-        <div class="text-block">
-            <div class="en-title">The Art of <br><span style="color: var(--accent-blue);">Solitude.</span></div>
-            <p class="zh-p">
-                这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。
-            </p>
+    <div class="hero-layout">
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=2000" alt="Identity">
         </div>
-        
-        <div class="text-block">
-            <div class="en-title" style="color: var(--accent-pink);">Digital <br>Territory.</div>
-            <p class="zh-p">
-                <span class="highlight-xy">X & Y</span> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。
-            </p>
+
+        <div class="info-panel">
+            <div class="bilingual-box">
+                <div class="en">NOT A FOLDER, BUT AN EXHIBITION.</div>
+                <div class="zh">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。</div>
+            </div>
+
+            <div class="bilingual-box">
+                <div class="en">PURE DIGITAL SANCTUARY.</div>
+                <div class="zh">所有的情绪被剥离，只剩下最纯粹的数字避难所。</div>
+            </div>
+
+            <div class="bilingual-box">
+                <div class="en">BEYOND THE NOISE.</div>
+                <div class="zh">在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</div>
+            </div>
         </div>
     </div>
 
-    <footer>© 2026 X & Y ALL RIGHTS RESERVED</footer>
+    <div class="quote-banner">
+        "Freedom is the ultimate luxury."
+    </div>
+
+    <footer>© 2026 ISSUE NO. 01 — X & Y</footer>
 </div>
 
 </body>
