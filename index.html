@@ -3,141 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X & Y | 自由陈列室</title>
+    <title>X & Y | 数字避难所</title>
     <style>
-        /* 核心视觉：照片同款粉色 + 深蓝色标题 */
         :root {
-            --frame-pink: #e91e63; /* 对应图中的粉红边框 */
-            --navy-blue: #003399;  /* 对应图中的 X&Y 颜色 */
-            --bg-white: #ffffff;
+            --main-pink: #e91e63;
         }
 
-        body, html { 
+        body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
-            font-family: 'Helvetica Neue', 'PingFang SC', sans-serif;
-            background: var(--bg-white);
+            background-color: #ffffff;
+            font-family: 'PingFang SC', sans-serif;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* 顶部大标题排版 */
-        header {
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+        /* 封面主图容器 */
+        .magazine-cover {
+            width: 100%;
+            max-width: 800px; /* 限制宽度保持美感 */
+            margin-top: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
         }
 
-        .logo-text {
-            font-size: 120px;
-            font-weight: 900;
-            color: transparent;
-            -webkit-text-stroke: 3px var(--navy-blue); /* 镂空蓝边效果 */
-            letter-spacing: -5px;
-            margin: 0;
+        .magazine-cover img {
+            width: 100%;
+            display: block;
         }
 
-        .sub-header {
-            margin-top: 30px;
-            border-left: 2px solid var(--navy-blue);
-            padding-left: 15px;
+        /* 下方的双语文字区 */
+        .content-section {
+            max-width: 800px;
+            width: 90%;
+            padding: 50px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
         }
 
-        .sub-header h2 { font-size: 1.8rem; margin: 0; color: var(--navy-blue); }
-        .sub-header p { font-size: 0.8rem; color: #666; width: 250px; line-height: 1.4; }
-
-        /* 核心图片区域：粉色大边框 */
-        .main-frame {
-            margin: 0 50px;
-            border: 25px solid var(--frame-pink); /* 完美还原图中的粉色框 */
-            position: relative;
-            height: 65vh;
-            overflow: hidden;
+        .text-block {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
         }
 
-        /* 使用 CSS 滤镜模拟照片中的双重曝光和粉蓝冲突色 */
-        .photo-layer {
-            width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000') center/cover;
-            filter: saturate(1.2) contrast(1.1);
-            position: relative;
+        .zh {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #222;
+            margin-bottom: 10px;
+            font-weight: 500;
         }
 
-        /* 模拟重影效果 */
-        .photo-layer::after {
-            content: "";
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: inherit;
-            background-position: 52% 50%;
-            opacity: 0.5;
-            mix-blend-mode: screen;
-            filter: hue-rotate(300deg) brightness(1.2);
+        .en {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #888;
+            font-style: italic;
         }
-
-        /* 框内文字：Freedom is the ultimate luxury. */
-        .inner-quote {
-            position: absolute; bottom: 40px; left: 40px;
-            color: #fff; font-size: 2.2rem; font-weight: 800;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-
-        /* 底部信息栏 */
-        .footer-info {
-            padding: 40px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo { font-size: 2rem; font-weight: 900; color: #ff9900; }
-        .copyright { font-size: 10px; color: #999; letter-spacing: 2px; }
-
-        /* 双语文字内容 */
-        .bilingual-content {
-            padding: 0 50px 100px;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-        }
-
-        .zh-p { font-size: 1.1rem; line-height: 2; color: #333; margin-bottom: 10px; }
-        .en-p { font-size: 0.85rem; color: #888; font-style: italic; }
 
         @media (max-width: 768px) {
-            .logo-text { font-size: 60px; }
-            .main-frame { margin: 0 10px; border-width: 10px; }
-            .bilingual-content { grid-template-columns: 1fr; }
+            .content-section { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 class="logo-text">X & Y</h1>
-        <div class="sub-header">
-            <h2>数字避难所</h2>
-            <p>This is no longer a collection of mundane records, but a showroom for freedom.</p>
-        </div>
-    </header>
-
-    <div class="main-frame">
-        <div class="photo-layer"></div>
-        <div class="inner-quote">Freedom is the<br>ultimate luxury.</div>
+    <div class="magazine-cover">
+        <img src="https://r.jina.ai/i/28a8a3061614488390b16892305ca79e" alt="X & Y Cover">
     </div>
 
-    <div class="footer-info">
-        <div class="copyright">NONCONFORMIST FORMAT</div>
-        <div class="footer-logo">X & Y</div>
-        <div class="copyright">© 2026 ISSUE 01 — THE PUREST LOGIC</div>
-    </div>
-
-    <section class="bilingual-content">
-        <div>
-            <p class="zh-p">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
-            <p class="en-p">No longer a collection of mundane records, but a showroom for freedom and reflection. A pure digital sanctuary.</p>
+    <section class="content-section">
+        <div class="text-block">
+            <p class="zh">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
+            <p class="en">No longer a collection of mundane records, but a showroom for freedom and reflection. A pure digital sanctuary.</p>
         </div>
-        <div>
-            <p class="zh-p"><strong>X & Y</strong> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
-            <p class="en-p">The first chronicle of X & Y starts here. Where silence holds more power than words, and solitude is beauty.</p>
+        <div class="text-block">
+            <p class="zh"><strong>X & Y</strong> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
+            <p class="en">The first chronicle of X & Y begins now. Where silence holds more power than words, and solitude is beauty.</p>
         </div>
     </section>
+
+    <footer style="margin-bottom: 50px; color: #ccc; font-size: 12px; letter-spacing: 2px;">
+        © 2026 ISSUE 01 — THE PUREST LOGIC
+    </footer>
 
 </body>
 </html>
