@@ -5,77 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X & Y | Digital Sanctuary</title>
     <style>
+        :root {
+            --magazine-pink: #ff2d78; /* 你图片里那种明亮的玫粉色 */
+            --navy-blue: #003399;     /* 图片顶部的深蓝色 */
+        }
+
         body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
+            margin: 0; padding: 0;
             background-color: #ffffff;
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            display: flex; flex-direction: column; align-items: center;
+            font-family: -apple-system, "Helvetica Neue", sans-serif;
+            color: #333;
         }
 
-        /* 封面容器：确保图片居中并适应屏幕 */
-        .magazine-cover {
+        /* 顶部杂志排版 */
+        header {
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            -webkit-text-stroke: 1.5px var(--navy-blue); /* 完美复刻镂空蓝字 */
+            letter-spacing: -2px;
+        }
+
+        .side-title {
+            text-align: right;
+            color: var(--navy-blue);
+        }
+
+        .side-title h1 { font-size: 18px; margin: 0; }
+        .side-title p { font-size: 10px; opacity: 0.6; margin: 5px 0 0; }
+
+        /* 核心视觉：粉色大边框 */
+        .main-visual {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .pink-frame {
+            border: 15px solid var(--magazine-pink); /* 你的标志性粉色框 */
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #fdf2f5; /* 淡淡的底色，不沉重 */
+        }
+
+        /* 这里是图片位置，你可以之后把上传的图片名填在下面 */
+        .pink-frame img {
             width: 100%;
-            max-width: 600px; /* 杂志封面的标准视觉宽度 */
-            margin-top: 10px;
+            height: 100%;
+            object-fit: cover;
+            /* 即使没图，也会显示一个漂亮的粉色空间 */
         }
 
-        .magazine-cover img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .frame-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        /* 文字排版区 */
-        .content-section {
-            max-width: 600px;
-            width: 90%;
-            padding: 40px 0;
-            text-align: left;
+        /* 文章内容：双语且透气 */
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
         }
 
-        .text-block {
-            margin-bottom: 30px;
-            border-bottom: 1px solid #f0f0f0;
-            padding-bottom: 20px;
+        .text-group { margin-bottom: 30px; }
+        .zh { font-size: 16px; line-height: 1.8; margin-bottom: 10px; font-weight: 500; }
+        .en { font-size: 12px; line-height: 1.6; color: #999; font-style: italic; }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #ccc;
+            border-top: 1px solid #f5f5f5;
         }
 
-        .zh {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-        }
-
-        .en {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: #999;
-            font-style: italic;
+        @media (max-width: 600px) {
+            .content { grid-template-columns: 1fr; }
+            .logo { font-size: 36px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="magazine-cover">
-        <img src="https://api.screenshotone.com/take?url=https%3A%2F%2Fimg.freepik.com%2Ffree-photo%2Fdreamy-girl-side-view-double-exposure-nature_23-2149320641.jpg&access_key=dummy" onerror="this.src='https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?auto=format&fit=crop&q=80&w=1000'" alt="X & Y Cover">
+    <header>
+        <div class="logo">X & Y</div>
+        <div class="side-title">
+            <h1>Digital Sanctuary</h1>
+            <p>Showroom for freedom and reflection</p>
+        </div>
+    </header>
+
+    <div class="main-visual">
+        <div class="pink-frame">
+            <img src="your_image_name.png" alt="X & Y Visual">
+            <div class="frame-text">Freedom is the<br>ultimate luxury.</div>
+        </div>
     </div>
 
-    <section class="content-section">
-        <div class="text-block">
-            <p class="zh">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
-            <p class="en">No longer a collection of mundane records, but a showroom for freedom and reflection. A pure digital sanctuary.</p>
+    <div class="content">
+        <div class="text-group">
+            <p class="zh">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。</p>
+            <p class="en">No longer a collection of mundane records, but a showroom for freedom and reflection.</p>
         </div>
-
-        <div class="text-block">
-            <p class="zh"><strong>X & Y</strong> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
-            <p class="en">The first chronicle of X & Y begins now. In this space, silence is more powerful than words, and solitude is more beautiful than noise.</p>
+        <div class="text-group">
+            <p class="zh">所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
+            <p class="en">All emotions are stripped away, leaving only the purest digital sanctuary.</p>
         </div>
-    </section>
+    </div>
 
-    <footer style="margin-bottom: 40px; color: #ddd; font-size: 10px; letter-spacing: 3px; text-transform: uppercase;">
-        © 2026 ISSUE 01 — THE PUREST LOGIC
-    </footer>
+    <footer>© 2026 ISSUE 01 — THE PUREST LOGIC</footer>
 
 </body>
 </html>
