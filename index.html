@@ -3,141 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X & Y | 自由陈列室</title>
+    <title>X-Y | 开发者 & 作家</title>
     <style>
-        /* 核心视觉：照片同款粉色 + 深蓝色标题 */
-        :root {
-            --frame-pink: #e91e63; /* 对应图中的粉红边框 */
-            --navy-blue: #003399;  /* 对应图中的 X&Y 颜色 */
-            --bg-white: #ffffff;
-        }
-
-        body, html { 
-            margin: 0; padding: 0; width: 100%; height: 100%;
-            font-family: 'Helvetica Neue', 'PingFang SC', sans-serif;
-            background: var(--bg-white);
-        }
-
-        /* 顶部大标题排版 */
-        header {
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .logo-text {
-            font-size: 120px;
-            font-weight: 900;
-            color: transparent;
-            -webkit-text-stroke: 3px var(--navy-blue); /* 镂空蓝边效果 */
-            letter-spacing: -5px;
+        body, html {
             margin: 0;
+            padding: 0;
+            font-family: 'PingFang SC', 'Microsoft YaHei', serif;
+            background-color: #0a0a0a;
+            color: #fff;
         }
 
-        .sub-header {
-            margin-top: 30px;
-            border-left: 2px solid var(--navy-blue);
-            padding-left: 15px;
-        }
-
-        .sub-header h2 { font-size: 1.8rem; margin: 0; color: var(--navy-blue); }
-        .sub-header p { font-size: 0.8rem; color: #666; width: 250px; line-height: 1.4; }
-
-        /* 核心图片区域：粉色大边框 */
-        .main-frame {
-            margin: 0 50px;
-            border: 25px solid var(--frame-pink); /* 完美还原图中的粉色框 */
-            position: relative;
-            height: 65vh;
-            overflow: hidden;
-        }
-
-        /* 使用 CSS 滤镜模拟照片中的双重曝光和粉蓝冲突色 */
-        .photo-layer {
-            width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000') center/cover;
-            filter: saturate(1.2) contrast(1.1);
-            position: relative;
-        }
-
-        /* 模拟重影效果 */
-        .photo-layer::after {
-            content: "";
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: inherit;
-            background-position: 52% 50%;
-            opacity: 0.5;
-            mix-blend-mode: screen;
-            filter: hue-rotate(300deg) brightness(1.2);
-        }
-
-        /* 框内文字：Freedom is the ultimate luxury. */
-        .inner-quote {
-            position: absolute; bottom: 40px; left: 40px;
-            color: #fff; font-size: 2.2rem; font-weight: 800;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-
-        /* 底部信息栏 */
-        .footer-info {
-            padding: 40px 50px;
+        /* 封面图区域 */
+        .hero {
+            height: 80vh; /* 占据屏幕80%高度 */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('cover.png') no-repeat center center/cover;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            text-align: center;
+            padding: 20px;
         }
 
-        .footer-logo { font-size: 2rem; font-weight: 900; color: #ff9900; }
-        .copyright { font-size: 10px; color: #999; letter-spacing: 2px; }
-
-        /* 双语文字内容 */
-        .bilingual-content {
-            padding: 0 50px 100px;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
         }
 
-        .zh-p { font-size: 1.1rem; line-height: 2; color: #333; margin-bottom: 10px; }
-        .en-p { font-size: 0.85rem; color: #888; font-style: italic; }
-
-        @media (max-width: 768px) {
-            .logo-text { font-size: 60px; }
-            .main-frame { margin: 0 10px; border-width: 10px; }
-            .bilingual-content { grid-template-columns: 1fr; }
+        .hero p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #ddd;
         }
+
+        /* 内容区域 */
+        .container {
+            max-width: 900px;
+            margin: -50px auto 50px; /* 向上偏移产生重叠感 */
+            background: rgba(25, 25, 25, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        section { margin-bottom: 40px; }
+        h2 { border-left: 4px solid #4facfe; padding-left: 15px; margin-bottom: 20px; }
+
+        .skills span {
+            background: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        a { color: #4facfe; text-decoration: none; transition: 0.3s; }
+        a:hover { color: #00f2fe; }
+
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #333; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 class="logo-text">X & Y</h1>
-        <div class="sub-header">
-            <h2>数字避难所</h2>
-            <p>This is no longer a collection of mundane records, but a showroom for freedom.</p>
-        </div>
+    <header class="hero">
+        <h1>X-Y</h1>
+        <p>数字世界的锻造者，星光文字的编织客</p>
     </header>
 
-    <div class="main-frame">
-        <div class="photo-layer"></div>
-        <div class="inner-quote">Freedom is the<br>ultimate luxury.</div>
-    </div>
+    <div class="container">
+        <section id="about">
+            <h2>👤 关于我</h2>
+            <p>一名对技术充满热情的开发者，在代码的逻辑中寻找严谨，在文字的海洋里寻找浪漫。</p>
+        </section>
 
-    <div class="footer-info">
-        <div class="copyright">NONCONFORMIST FORMAT</div>
-        <div class="footer-logo">X & Y</div>
-        <div class="copyright">© 2026 ISSUE 01 — THE PUREST LOGIC</div>
-    </div>
+        <section id="skills">
+            <h2>🛠️ 技术栈</h2>
+            <div class="skills">
+                <span>HTML5</span> <span>CSS3</span> <span>JavaScript</span> <span>Git</span>
+            </div>
+        </section>
 
-    <section class="bilingual-content">
-        <div>
-            <p class="zh-p">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
-            <p class="en-p">No longer a collection of mundane records, but a showroom for freedom and reflection. A pure digital sanctuary.</p>
-        </div>
-        <div>
-            <p class="zh-p"><strong>X & Y</strong> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
-            <p class="en-p">The first chronicle of X & Y starts here. Where silence holds more power than words, and solitude is beauty.</p>
-        </div>
-    </section>
+        <section id="works">
+            <h2>📖 散文小说集</h2>
+            <ul>
+                <li>
+                    <strong>[散文] 默认标题</strong> 
+                    <p>点击这里开始你的阅读之旅...</p>
+                    <a href="#">阅读全文 →</a>
+                </li>
+            </ul>
+        </section>
+    </div>
 
 </body>
 </html>
