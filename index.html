@@ -6,132 +6,175 @@
     <title>X & Y | Digital Sanctuary</title>
     <style>
         :root {
-            --magazine-pink: #ff2d78; /* 你图片里那种明亮的玫粉色 */
-            --navy-blue: #003399;     /* 图片顶部的深蓝色 */
+            --hot-pink: #ff2d78; /* 杂志标志性的粉色 */
+            --navy: #003399;     /* 镂空字体的蓝色 */
+            --light-grey: #f8f8f8;
         }
 
         body, html {
             margin: 0; padding: 0;
             background-color: #ffffff;
-            font-family: -apple-system, "Helvetica Neue", sans-serif;
-            color: #333;
+            font-family: "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 顶部杂志排版 */
-        header {
-            padding: 30px 20px;
+        /* 杂志页眉排版 */
+        .magazine-header {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 25px 30px;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
-        .logo {
-            font-size: 48px;
+        /* 左侧：巨大的镂空标题 */
+        .brand-logo {
+            font-size: clamp(60px, 10vw, 110px);
             font-weight: 900;
-            color: white;
-            -webkit-text-stroke: 1.5px var(--navy-blue); /* 完美复刻镂空蓝字 */
-            letter-spacing: -2px;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--navy);
+            letter-spacing: -5px;
+            line-height: 0.8;
+            user-select: none;
         }
 
-        .side-title {
+        /* 右侧：精致的“数字避难所”区块 */
+        .top-meta {
             text-align: right;
-            color: var(--navy-blue);
+            border-top: 1.5px solid var(--navy); /* 改为顶部横线，更有设计感 */
+            padding-top: 15px;
+            margin-top: 10px;
         }
 
-        .side-title h1 { font-size: 18px; margin: 0; }
-        .side-title p { font-size: 10px; opacity: 0.6; margin: 5px 0 0; }
+        .top-meta h2 {
+            font-size: 26px;
+            margin: 0;
+            color: var(--navy);
+            font-weight: 600;
+            letter-spacing: 4px;
+        }
 
-        /* 核心视觉：粉色大边框 */
-        .main-visual {
-            max-width: 800px;
+        .top-meta p {
+            font-size: 10px;
+            color: #888;
+            margin: 8px 0 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.4;
+            max-width: 220px;
+        }
+
+        /* 核心视觉：粉色画框 */
+        .hero-section {
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 25px;
         }
 
-        .pink-frame {
-            border: 15px solid var(--magazine-pink); /* 你的标志性粉色框 */
+        .pink-border-frame {
+            border: 20px solid var(--hot-pink);
             position: relative;
-            aspect-ratio: 1 / 1;
+            background-color: var(--light-grey);
             overflow: hidden;
-            background: #fdf2f5; /* 淡淡的底色，不沉重 */
+            transition: all 0.5s ease;
         }
 
-        /* 这里是图片位置，你可以之后把上传的图片名填在下面 */
-        .pink-frame img {
+        .pink-border-frame img {
             width: 100%;
-            height: 100%;
+            display: block;
             object-fit: cover;
-            /* 即使没图，也会显示一个漂亮的粉色空间 */
+            /* 手机上传后，请务必确认图片名是否为 image.png */
         }
 
-        .frame-text {
+        /* 覆盖在图上的文字 */
+        .overlay-quote {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
+            bottom: 40px;
+            left: 40px;
             color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-size: clamp(24px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.1;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        /* 文章内容：双语且透气 */
-        .content {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 40px;
+        /* 双语正文：杂志两栏布局 */
+        .dual-column-text {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 50px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 80px;
         }
 
-        .text-group { margin-bottom: 30px; }
-        .zh { font-size: 16px; line-height: 1.8; margin-bottom: 10px; font-weight: 500; }
-        .en { font-size: 12px; line-height: 1.6; color: #999; font-style: italic; }
+        .text-item { margin-bottom: 40px; }
+
+        .zh-content {
+            font-size: 18px;
+            line-height: 2;
+            color: #111;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .en-content {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #999;
+            font-style: italic;
+            font-family: serif;
+        }
 
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 100px 0 50px;
             font-size: 10px;
-            letter-spacing: 3px;
-            color: #ccc;
-            border-top: 1px solid #f5f5f5;
+            letter-spacing: 6px;
+            color: #bbb;
         }
 
-        @media (max-width: 600px) {
-            .content { grid-template-columns: 1fr; }
-            .logo { font-size: 36px; }
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            .magazine-header { padding: 30px 20px; }
+            .dual-column-text { 
+                grid-template-columns: 1fr; 
+                padding: 0 25px;
+                gap: 40px;
+            }
+            .pink-border-frame { border-width: 12px; }
+            .top-meta h2 { font-size: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">X & Y</div>
-        <div class="side-title">
-            <h1>Digital Sanctuary</h1>
-            <p>Showroom for freedom and reflection</p>
+    <header class="magazine-header">
+        <div class="brand-logo">X & Y</div>
+        <div class="top-meta">
+            <h2>数字避难所</h2>
+            <p>A curated showroom for freedom and digital reflection.</p>
         </div>
     </header>
 
-    <div class="main-visual">
-        <div class="pink-frame">
-            <img src="your_image_name.png" alt="X & Y Visual">
-            <div class="frame-text">Freedom is the<br>ultimate luxury.</div>
+    <main class="hero-section">
+        <div class="pink-border-frame">
+            <img src="image.png" alt="Cover Visual">
+            <div class="overlay-quote">Freedom is the<br>ultimate luxury.</div>
         </div>
-    </div>
+    </main>
 
-    <div class="content">
-        <div class="text-group">
-            <p class="zh">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。</p>
-            <p class="en">No longer a collection of mundane records, but a showroom for freedom and reflection.</p>
+    <article class="dual-column-text">
+        <div class="text-item">
+            <p class="zh-content">这里不再是繁琐的记录，而是一个关于自由与思考的陈列室。所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
+            <p class="en-content">Beyond mundane documentation, this is a showroom dedicated to freedom and reflection. A sanctuary where emotions are distilled into purity.</p>
         </div>
-        <div class="text-group">
-            <p class="zh">所有的情绪被剥离，只剩下最纯粹的数字避难所。</p>
-            <p class="en">All emotions are stripped away, leaving only the purest digital sanctuary.</p>
+        <div class="text-item">
+            <p class="zh-content"><strong>X & Y</strong> 的第一篇记录，始于此刻。在这个空间里，沉默比言语更有力量，孤独比喧嚣更具美感。</p>
+            <p class="en-content">The inaugural chronicle of X & Y begins. In this space, silence speaks louder than words, and solitude holds more grace than the noise of the world.</p>
         </div>
-    </div>
+    </article>
 
     <footer>© 2026 ISSUE 01 — THE PUREST LOGIC</footer>
 
