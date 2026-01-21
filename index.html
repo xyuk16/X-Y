@@ -6,57 +6,72 @@
     <title>X & Y | Digital Sanctuary</title>
     <style>
         :root { --hot-pink: #ff2d78; --navy: #003399; }
-        body, html { margin: 0; padding: 0; background: #fff; font-family: "PingFang SC", "Hiragino Sans GB", sans-serif; scroll-behavior: smooth; }
+        body, html { margin: 0; padding: 0; background: #fff; font-family: "PingFang SC", "Hiragino Sans GB", sans-serif; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
         
-        /* 1. 顶部导航：已更新为中英双语 */
+        /* 导航栏：增加虚化效果 */
         nav { 
-            position: sticky; top: 0; background: rgba(255,255,255,0.9); 
-            backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid #f0f0f0; 
-            display: flex; justify-content: center; padding: 15px 0; 
+            position: sticky; top: 0; background: rgba(255,255,255,0.8); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
+            z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); 
+            display: flex; justify-content: center; padding: 18px 0; 
         }
-        nav a { margin: 0 15px; text-decoration: none; color: #aaa; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+        nav a { margin: 0 15px; text-decoration: none; color: #bbb; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: var(--hot-pink); }
 
-        /* 2. 杂志页眉排版 */
-        header { max-width: 1000px; margin: 0 auto; padding: 40px 20px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .logo { font-size: clamp(50px, 8vw, 100px); font-weight: 900; color: transparent; -webkit-text-stroke: 1.5px var(--navy); line-height: 0.8; letter-spacing: -4px; }
-        .sanctuary-title { text-align: right; border-top: 2px solid var(--navy); padding-top: 10px; color: var(--navy); }
-        .sanctuary-title h2 { font-size: 24px; margin: 0; letter-spacing: 4px; font-weight: 600; }
+        /* 杂志页眉：极致对比 */
+        header { max-width: 1000px; margin: 0 auto; padding: 60px 20px 40px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .logo { font-size: clamp(60px, 12vw, 120px); font-weight: 900; color: transparent; -webkit-text-stroke: 1.5px var(--navy); line-height: 0.7; letter-spacing: -6px; }
+        .sanctuary-title { text-align: right; border-top: 3px solid var(--navy); padding-top: 10px; color: var(--navy); }
+        .sanctuary-title h2 { font-size: 26px; margin: 0; letter-spacing: 6px; font-weight: 800; }
 
-        /* 3. 小说连载专区 (左图右文) */
-        .novel-hero { max-width: 1000px; margin: 0 auto 100px; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; align-items: center; }
-        .pink-frame { border: 15px solid var(--hot-pink); position: relative; overflow: hidden; }
-        .pink-frame img { width: 100%; display: block; height: auto; }
+        /* 小说连载专区：布局优化 */
+        .novel-hero { max-width: 1000px; margin: 0 auto 120px; padding: 0 20px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
+        .pink-frame { border: 18px solid var(--hot-pink); position: relative; overflow: hidden; transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .pink-frame img { width: 100%; display: block; transition: 0.8s; }
+        .pink-frame:hover img { transform: scale(1.05); }
         
-        .novel-info .tag { color: var(--hot-pink); font-size: 11px; font-weight: bold; letter-spacing: 3px; }
-        .novel-info h3 { font-size: 32px; margin: 20px 0; font-weight: 600; color: #111; }
-        .novel-info p { color: #666; line-height: 1.8; margin-bottom: 30px; font-size: 15px; }
-        .read-btn { display: inline-block; padding: 12px 30px; background: var(--navy); color: white; text-decoration: none; font-size: 12px; letter-spacing: 2px; font-weight: bold; }
-
-        /* 4. 分类索引区块 */
-        .index-section { max-width: 1000px; margin: 0 auto; padding: 0 20px 100px; }
-        .index-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .category-box { border-top: 1px solid #eee; padding-top: 20px; }
-        .category-box h4 { font-size: 12px; color: #bbb; letter-spacing: 3px; margin-bottom: 25px; font-weight: 700; }
+        .novel-info .tag { color: var(--hot-pink); font-size: 10px; font-weight: 900; letter-spacing: 4px; display: block; margin-bottom: 15px; }
+        .novel-info h3 { font-size: 42px; margin: 0 0 25px; font-weight: 700; color: #111; letter-spacing: -1px; }
         
-        .item-row { display: flex; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid #f9f9f9; text-decoration: none; color: #333; transition: 0.2s; }
-        .item-row:hover { color: var(--hot-pink); transform: translateX(5px); }
-        .item-row span { font-size: 15px; font-weight: 500; }
-        .item-row .date { color: #ddd; font-size: 11px; font-family: serif; }
+        /* 核心优化：首字下沉 */
+        .novel-description::first-letter {
+            float: left; font-size: 55px; line-height: 45px; padding-top: 4px; padding-right: 8px;
+            color: var(--hot-pink); font-weight: 900; font-family: "Georgia", serif;
+        }
+        .novel-description { color: #555; line-height: 1.8; margin-bottom: 35px; font-size: 16px; text-align: justify; }
+        
+        .read-btn { display: inline-block; padding: 15px 40px; background: var(--navy); color: white; text-decoration: none; font-size: 11px; letter-spacing: 3px; font-weight: bold; transition: 0.3s; }
+        .read-btn:hover { background: var(--hot-pink); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 45, 120, 0.2); }
 
-        /* 碎片预览卡片特殊样式 */
-        .fragment-card { background: #fff9fb; padding: 20px; border: 1px solid #fdf2f5; display: block; text-decoration: none; color: #333; }
-        .fragment-card span { font-style: italic; line-height: 1.6; display: block; }
+        /* 分类索引区块：增加错落感 */
+        .index-section { max-width: 1000px; margin: 0 auto 100px; padding: 0 20px; }
+        .index-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+        .category-box { border-top: 1px solid #000; padding-top: 20px; }
+        .category-box h4 { font-size: 11px; color: #000; letter-spacing: 4px; margin-bottom: 30px; font-weight: 900; }
+        
+        .item-row { display: flex; justify-content: space-between; padding: 22px 0; border-bottom: 1px solid #f0f0f0; text-decoration: none; color: #222; transition: 0.3s; }
+        .item-row:hover { color: var(--hot-pink); padding-left: 10px; }
+        .item-row span { font-size: 16px; font-weight: 600; }
+        .item-row .date { color: #ccc; font-size: 11px; font-family: serif; }
 
-        footer { text-align: center; padding: 80px 0 40px; color: #eee; font-size: 10px; letter-spacing: 5px; text-transform: uppercase; }
+        /* 灵感碎片：旋转便签感 */
+        .fragment-card { 
+            background: #fff; padding: 30px; border-left: 5px solid var(--hot-pink); 
+            box-shadow: 15px 15px 40px rgba(0,0,0,0.05); 
+            text-decoration: none; color: #333; display: block;
+            transform: rotate(-1deg); transition: 0.3s;
+        }
+        .fragment-card:hover { transform: rotate(0deg) scale(1.02); }
+        .fragment-card span { font-style: italic; line-height: 1.8; font-size: 15px; display: block; }
 
-        /* 手机端适配 */
+        footer { text-align: center; padding: 100px 0 60px; color: #ddd; font-size: 9px; letter-spacing: 6px; }
+
         @media (max-width: 768px) { 
-            .novel-hero { grid-template-columns: 1fr; gap: 30px; } 
-            .index-grid { grid-template-columns: 1fr; }
-            header { padding: 30px 20px; }
-            .logo { font-size: 60px; }
-            nav a { margin: 0 8px; font-size: 9px; letter-spacing: 1px; }
+            .novel-hero { grid-template-columns: 1fr; gap: 40px; } 
+            .index-grid { grid-template-columns: 1fr; gap: 60px; }
+            header { padding: 40px 20px; }
+            .logo { font-size: 70px; }
+            .pink-frame { border-width: 12px; }
         }
     </style>
 </head>
@@ -81,13 +96,13 @@
             <div class="novel-info">
                 <span class="tag">FICTIONS / 虚构连载</span>
                 <h3>数字潮汐的尽头</h3>
-                <p>在那片被霓虹灯切碎的海面上，没有人知道第一声波涛是从哪里开始的。这是一个关于记忆迁徙与自由博弈的故事。</p>
+                <p class="novel-description">在那片被霓虹灯切碎的海面上，没有人知道第一声波涛是从哪里开始的。这是一个关于记忆迁徙与自由博弈的故事。我们总是在算法的洪流中寻找真实的锚点。</p>
                 <a href="novel-01.html" class="read-btn">START READING / 开始阅读</a>
                 
-                <div style="margin-top: 40px;">
-                    <h4 style="font-size: 11px; color: #ccc; letter-spacing: 2px;">CHAPTERS / 章节目录</h4>
+                <div style="margin-top: 50px;">
+                    <h4 style="font-size: 10px; color: #ccc; letter-spacing: 3px; margin-bottom: 15px;">CONTENTS / 目录</h4>
                     <a href="novel-01.html" class="item-row"><span>01. 凌晨三点的模拟信号</span><span class="date">NEW</span></a>
-                    <a href="#" class="item-row"><span>02. 算法无法触及的荒原</span><span class="date">COMING SOON</span></a>
+                    <a href="#" class="item-row"><span>02. 算法无法触及的荒原</span><span class="date">SOON</span></a>
                 </div>
             </div>
         </section>
@@ -102,8 +117,8 @@
                 <div class="category-box" id="fragments">
                     <h4>FRAGMENTS / 灵感碎片</h4>
                     <a href="#" class="fragment-card">
-                        <span>“沉默比言语更有力量，孤独比喧嚣更具美感。在这个避难所里，我们重新找回呼吸的节奏。”</span>
-                        <small style="display: block; margin-top: 15px; color: #ddd; font-size: 10px;">2026.01.20</small>
+                        <span>“沉默比言语更有力量，孤独比喧嚣更具美感。在这个数字避难所里，我们重新找回呼吸的节奏。”</span>
+                        <small style="display: block; margin-top: 20px; color: #ddd; font-size: 10px;">2026.01.21</small>
                     </a>
                 </div>
             </div>
