@@ -8,48 +8,53 @@
         :root { --hot-pink: #ff2d78; --navy: #003399; }
         body, html { margin: 0; padding: 0; background: #fff; font-family: "PingFang SC", sans-serif; scroll-behavior: smooth; }
         
-        /* 1. 顶部极简导航 */
+        /* 导航栏 */
         nav { position: sticky; top: 0; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: center; padding: 15px 0; }
         nav a { margin: 0 15px; text-decoration: none; color: #aaa; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
         nav a:hover { color: var(--hot-pink); }
 
-        /* 2. 杂志页眉 */
+        /* 杂志页眉 */
         header { max-width: 1000px; margin: 0 auto; padding: 40px 20px; display: flex; justify-content: space-between; align-items: flex-end; }
         .logo { font-size: clamp(50px, 8vw, 100px); font-weight: 900; color: transparent; -webkit-text-stroke: 1.5px var(--navy); line-height: 0.8; }
         .sanctuary-title { text-align: right; border-top: 2px solid var(--navy); padding-top: 10px; color: var(--navy); }
         .sanctuary-title h2 { font-size: 24px; margin: 0; letter-spacing: 4px; }
 
-        /* 3. 核心：小说连载展示区 (左图右文) */
+        /* 小说连载专区 */
         .novel-hero { max-width: 1000px; margin: 0 auto 100px; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; align-items: center; }
-        .pink-frame { border: 15px solid var(--hot-pink); position: relative; }
-        .pink-frame img { width: 100%; display: block; }
+        .pink-frame { border: 15px solid var(--hot-pink); position: relative; overflow: hidden; }
+        .pink-frame img { width: 100%; display: block; height: auto; transition: transform 0.5s; }
+        .pink-frame:hover img { transform: scale(1.05); }
         
         .novel-info .tag { color: var(--hot-pink); font-size: 12px; font-weight: bold; letter-spacing: 3px; }
         .novel-info h3 { font-size: 36px; margin: 20px 0; font-weight: 600; }
         .novel-info p { color: #666; line-height: 1.8; margin-bottom: 30px; }
         .read-btn { display: inline-block; padding: 12px 30px; background: var(--navy); color: white; text-decoration: none; font-size: 13px; letter-spacing: 2px; }
 
-        /* 4. 其他分类索引 (思绪、随笔) */
+        /* 分类索引 */
         .index-section { max-width: 1000px; margin: 0 auto; padding: 0 20px 100px; }
         .index-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .category-box { border-top: 1px solid #eee; padding-top: 20px; }
-        .category-box h4 { font-size: 12px; color: #ccc; letter-spacing: 3px; margin-bottom: 20px; }
-        .item-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f9f9f9; text-decoration: none; color: #333; }
-        .item-row:hover { color: var(--hot-pink); }
+        .category-box h4 { font-size: 12px; color: #ccc; letter-spacing: 3px; margin-bottom: 20px; text-transform: uppercase; }
+        .item-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f9f9f9; text-decoration: none; color: #333; transition: 0.2s; }
+        .item-row:hover { color: var(--hot-pink); padding-left: 5px; }
         .item-row span { font-size: 14px; }
         .item-row .date { color: #ddd; font-size: 11px; }
 
         footer { text-align: center; padding: 60px; color: #eee; font-size: 10px; letter-spacing: 5px; }
 
-        @media (max-width: 768px) { .novel-hero { grid-template-columns: 1fr; } .index-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { 
+            .novel-hero { grid-template-columns: 1fr; gap: 30px; } 
+            .index-grid { grid-template-columns: 1fr; }
+            header { padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#fictions">Fictions / 小说</a>
-        <a href="#margins">Margins / 随笔</a>
-        <a href="#fragments">Fragments / 思绪</a>
+        <a href="#fictions">Fictions</a>
+        <a href="#margins">Margins</a>
+        <a href="#fragments">Fragments</a>
     </nav>
 
     <header>
@@ -60,7 +65,7 @@
     <main>
         <section class="novel-hero" id="fictions">
             <div class="pink-frame">
-                <img src="cover.png" alt="Fiction Cover">
+                <img src="cover.PNG" alt="Fiction Cover">
             </div>
             <div class="novel-info">
                 <span class="tag">LONG FICTION / 小说连载</span>
@@ -85,8 +90,8 @@
                 </div>
                 <div class="category-box" id="fragments">
                     <h4>FRAGMENTS / 思绪</h4>
-                    <a href="#" class="item-row" style="background: #fff9fb; padding: 15px; border: 1px solid #fdf2f5;">
-                        <span style="font-style: italic;">“沉默比言语更有力量，孤独比喧嚣更具美感。”</span>
+                    <a href="#" class="item-row" style="background: #fff9fb; padding: 15px; border: 1px solid #fdf2f5; display: block;">
+                        <span style="font-style: italic; display: block;">“沉默比言语更有力量，孤独比喧嚣更具美感。”</span>
                     </a>
                 </div>
             </div>
